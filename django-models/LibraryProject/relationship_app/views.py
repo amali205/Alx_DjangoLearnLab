@@ -7,7 +7,7 @@ from .models import Library
 
 
 
-def book_list(request):
+def list_books(request):
     return render(request,'relationship_app/list_books.html')
 
 class BookListView(ListView):
