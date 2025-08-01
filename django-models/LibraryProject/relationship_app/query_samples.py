@@ -15,12 +15,12 @@ except Author.DoesNotExist:
 library_name = "Main Library"
 try:
     library = Library.objects.get(name=library_name)
-    librarian = Librarian.objects.get(library=library)
-    print(f"Librarian for {library.name} is {librarian.name}")
+    books_in_library = library.books.all()
+    print(f"\nBooks in {library.name}:")
+    for book in books_in_library:
+        print(f"- {book.title}")
 except Library.DoesNotExist:
     print("Library not found.")
-except Librarian.DoesNotExist:
-    print("Librarian not found.")    
 
 try:
     librarian = library.librarian
