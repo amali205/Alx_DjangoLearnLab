@@ -7,11 +7,11 @@ from .models import Library
 
 
 def book_list(request):
-    return render(request,r'relationship_app/list_books.html')
+    return render(request,'relationship_app/list_books.html')
 
 class BookListView(ListView):
  def get(self, request):
         return render(request, 'List_books.html', { 'books' :Book.objects.all()})
 class BookDetailView(DetailView):
  def get(self, request):
-        return render(request, 'library_detail.html' , Library.objects.all())
+        return render(request, 'relationship_app/library_detail.html' , Library.objects.all())
