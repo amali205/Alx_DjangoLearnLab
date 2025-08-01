@@ -4,7 +4,7 @@ author_name = "ahmed"
 
 try :
     author = Author.objects.get(name=author_name)
-    books_by_author = author.books.all()
+    books_by_author = Book.objects.filter(author=author)
     print(f"Books by {author.name}:")
     for book in books_by_author:
         print(f"- {book.title}")
