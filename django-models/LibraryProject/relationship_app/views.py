@@ -13,6 +13,6 @@ def list_books(request):
 class BookListView(ListView):
  def get(self, request):
         return render(request, 'List_books.html', { 'books' :Book.objects.all()})
-class BookDetailView(DetailView):
+class LibraryDetailView(DetailView):
  def get(self, request):
         return render(request, 'relationship_app/library_detail.html' , Library.objects.all())
