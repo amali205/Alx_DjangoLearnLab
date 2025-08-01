@@ -30,3 +30,7 @@ try:
         print(f"\nNo librarian assigned to {library.name}")
 except Exception as e:
     print("Error retrieving librarian:", e)
+
+
+
+librarian = Librarian.objects.get(library=library)
