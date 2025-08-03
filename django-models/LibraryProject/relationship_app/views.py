@@ -21,12 +21,15 @@ class LibraryDetailView(DetailView):
  def get(self, request):
         return render(request, 'relationship_app/library_detail.html' , {"books":Library.objects.all()})
 
-def register(request):
-    form = UserCreationForm()
-    return render(request , 'relationship_app/register.html' , {"form":form})
-def loginform(request):
-    login_form = login()    
-    return render (request , 'relationship_app/login.html' ,  {"form": login_form})
-def logoutform(request):
-    logout(request)
-    return render(request , 'logout.html' )
+class registerview(ListView):
+    def get(self, request):
+     form = UserCreationForm()
+     return render(request , 'relationship_app/register.html' , {"form":form})
+class loginview(ListView):
+    def get(self, request):
+     login_form = login()    
+     return render (request , 'relationship_app/login.html' ,  {"form": login_form})
+class logoutview(ListView):
+     def get(self, request):
+      logout(request)
+      return render(request , 'logout.html' )
