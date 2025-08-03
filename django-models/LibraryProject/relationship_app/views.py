@@ -21,8 +21,7 @@ class LibraryDetailView(DetailView):
  def get(self, request):
         return render(request, 'relationship_app/library_detail.html' , {"books":Library.objects.all()})
 
-class registerview(ListView):
-    def get(self, request):
+def register(request):
      form = UserCreationForm()
      return render(request , 'relationship_app/register.html' , {"form":form})
 class loginview(ListView):
