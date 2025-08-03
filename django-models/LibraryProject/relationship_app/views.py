@@ -24,11 +24,11 @@ class LibraryDetailView(DetailView):
 def register(request):
      form = UserCreationForm()
      return render(request , 'relationship_app/register.html' , {"form":form})
-class loginview(ListView):
+class LoginView(ListView):
     def get(self, request):
      login_form = login()    
      return render (request , 'relationship_app/login.html' ,  {"form": login_form})
-class logoutview(ListView):
+class LogoutView(ListView):
      def get(self, request):
       logout(request)
       return render(request , 'logout.html' )
