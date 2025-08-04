@@ -5,9 +5,7 @@ from .views import BookListView
 from .views import LoginView
 from .views import LogoutView
 from . import views
-from .views import admin_view
-from .views import librarian_view
-from .views import member_view
+
 
 
 urlpatterns = [
@@ -17,7 +15,7 @@ urlpatterns = [
        path('register', views.register , name= 'register'),
        path('login', LoginView.as_view(template_name="relationship_app/login.html") , name='login'),
        path('logout',LogoutView.as_view(template_name="relationship_app/logout.html")  , name='logout'),
-       path('admin-area', admin_view, name='admin_view'),
-       path('librarian-area', librarian_view, name='librarian_view'),
-       path('member-area', member_view, name='member_view'),
+       path('admin', views.admin_view, name='admin_view'),
+       path('member', views.member_view, name='member_view'),
+       path('librarian', views.librarian_view, name='librarian_view'),     
 ]
