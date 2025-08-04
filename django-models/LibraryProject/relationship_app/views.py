@@ -7,6 +7,7 @@ from django.contrib.auth import logout
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth.decorators import user_passes_test , login_required
+from django.contrib.auth.decorators import permission_required
 
 
 # Create your views here.
@@ -52,13 +53,16 @@ def is_librarian(user):
 
 # Views
 @user_passes_test(is_admin, login_url='login')
+@login_required
 def admin_view(request):
-    return render(request, 'admin_view.html')
+    return render(request, 'relationship_app/admin_view.html')
 
 @user_passes_test(is_member, login_url='login')
+@login_required
 def member_view(request):
-    return render(request, 'member_view.html')
+    return render(request, 'relationship_app/member_view.html')
 
 @user_passes_test(is_librarian, login_url='login')
+@login_required
 def librarian_view(request):
-    return render(request, 'librarian_view.html')
+    return render(request, 'relationship_app/librarian_view.html')
