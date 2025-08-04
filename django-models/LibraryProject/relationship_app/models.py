@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+
 # Create your models here.
 
 class Author(models.Model):
@@ -37,6 +37,6 @@ class UserProfile(models.Model):
   def __str__(self):
    return self.user
 
-def CreatUserProfile(sender, instance, created, **kwargs ):
-  
+
+
 
