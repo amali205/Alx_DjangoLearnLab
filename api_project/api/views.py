@@ -8,7 +8,7 @@ from rest_framework.response import Response
 class BookList(generics.ListAPIView):
        def get(self , request):
               queryset = Book.objects.all()
-              serializer_class = BookSerializer()
+              serializer_class = BookSerializer(queryset , many=True)  # لازم امرر له البيانات 
               return Response(serializer_class.data)
        
 
@@ -16,3 +16,14 @@ class BookList(generics.ListAPIView):
 
     #    def get_queryset(self):                         ####    we can use this functions for more actions we need 
     #           return Book.objects.filter()
+
+
+
+
+from rest_framework import viewsets
+
+
+
+class BookViewSet(viewsets.ModelViewSet):  # modelviewset use the class directly like this 
+              queryset = Book.objects.all()
+              serializer_class = BookSerializer
