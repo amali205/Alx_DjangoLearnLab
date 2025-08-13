@@ -17,7 +17,7 @@ class BookSerializer(serializers.ModelSerializer):  # convert book model to json
 
 
 class AuthorSerializer(serializers.ModelSerializer):                         # convert author model to json
-    books = BookSerializer(many=True , read_only = True)                     # -- nested serializer to get all books of author
+    books = BookSerializer(many=True, read_only=True)                     # -- nested serializer to get all books of author
     class Meta:
         model =Author
         fields = ['name' , 'books']
