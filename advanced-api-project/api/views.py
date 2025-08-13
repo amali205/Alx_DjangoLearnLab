@@ -6,8 +6,10 @@ from rest_framework import generics
 from rest_framework.authentication import BasicAuthentication 
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework import filters 
-from django_filters.rest_framework import DjangoFilterBackend  
-# Create your views here.
+from django_filters.rest_framework import DjangoFilterBackend   # it is important for filter set fields
+
+
+
 
 
 
