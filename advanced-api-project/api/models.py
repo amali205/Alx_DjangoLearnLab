@@ -10,7 +10,7 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=20)   # name of the book
     publication_year =models.IntegerField()
-    author = models.ForeignKey(Author , on_delete=models.CASCADE)  # this is one to many relationship 
+    author = models.ForeignKey(Author , on_delete=models.CASCADE , related_name='books')  # this is one to many relationship 
 
     def __str__(self):
         return self.title

@@ -3,7 +3,9 @@ from .models import Book ,Author
 from datetime import datetime
 
 
+
 class BookSerializer(serializers.ModelSerializer):  # convert book model to json
+    # author = serializers.CharField(source='author.name', read_only=True)   # to show author name in api
     class Meta:
         model = Book
         fields= '__all__'
@@ -20,6 +22,5 @@ class AuthorSerializer(serializers.ModelSerializer):                         # c
     books = BookSerializer(many=True, read_only=True)                     # -- nested serializer to get all books of author
     class Meta:
         model =Author
-        fields = ['name' , 'books']
-
+        fields = ['name', 'books']
 
