@@ -1,9 +1,9 @@
 from django.urls import path ,include
 from .router import router
-from .views import Bookgenricsupdate , Bookgenrics
+from .views import ListView, DetailView, CreateView, UpdateView, DeleteView
 urlpatterns = [
-    path('all_books' ,Bookgenrics.as_view() ,name='all_book'),
-    path('all_books/<int:pk>' ,Bookgenricsupdate.as_view() ,name='book'),
+    path('all_books' ,ListView.as_view() ,name='all_book'),
+    path('all_books/<int:pk>', DetailView.as_view() ,name='book'),
     path('', include(router.urls))
 ]
 
