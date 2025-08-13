@@ -1,0 +1,17 @@
+from django.db import models
+
+# Create your models here.
+
+class Author(models.Model):
+    name = models.CharField(max_length=20)   # get the name of author
+    def __str__(self):
+        return self.name
+    
+class Book(models.Model):
+    title = models.CharField(max_length=20)   # name of the book
+    publication_year =models.IntegerField()
+    author = models.ForeignKey(Author , on_delete=models.CASCADE)  # this is one to many relationship 
+
+    def __str__(self):
+        return self.title
+    
