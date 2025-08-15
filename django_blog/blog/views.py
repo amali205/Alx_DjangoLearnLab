@@ -6,6 +6,8 @@ from django.views.generic import ListView , DetailView , DeleteView , UpdateView
 from .models import Post, Comment
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
 from django.shortcuts import get_object_or_404
+from django.db.models import Q
+from .models import Post, Tag
 
 def Register(request):
     if request.method == 'POST':
@@ -120,3 +122,22 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('post-detail', kwargs={'pk': self.object.post.pk})    
+    
+
+
+def search_posts(request):
+    query = request.GET.get('q', '')
+    posts = Post.objects.all()
+    if query:
+        posts = posts.filter(
+            Q(title__icontains=query) |
+            Q(content__icontains=query) |
+            Q(tags__name__icontains=query)
+        ).distinct()
+    return render(request, 'blog/search_results.html', {'posts': posts, 'query': query})
+
+
+def posts_by_tag(request, tag_name):
+    tag = get_object_or_404(Tag, name=tag_name)
+    posts = tag.posts.all()
+    return render(request, 'blog/posts_by_tag.html', {'tag': tag, 'posts': posts})

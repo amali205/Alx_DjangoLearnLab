@@ -32,10 +32,10 @@ urlpatterns = [
 
     # Delete
     path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment-delete'),
+
+
+    path('search/', views.search_posts, name='search-posts'),
+    path('tags/<str:tag_name>/', views.posts_by_tag, name='posts-by-tag'),
 ]
 
 
-
-urlpatterns = [
-   
-]
