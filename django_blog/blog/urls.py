@@ -1,28 +1,24 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
-from .views import CreateView ,DeleteView ,DetailView ,ListView , UpdateView
+
 urlpatterns = [
-    # Login (uses built-in view + default template name)
+    # Auth
     path('login/', auth_views.LoginView.as_view(template_name='blog/login.html'), name='login'),
-
-    # Logout
     path('logout/', auth_views.LogoutView.as_view(template_name='blog/logout.html'), name='logout'),
+    path('register/', views.Register, name='register'),
 
-    # Registration (custom view)
-    path('/', views.Register, name='register'),
-
-    # Profile (custom view)
+    # Profile
     path('profile/', views.profile, name='profile'),
-    path('', views.home, name='home'),  # name='home' is important
-    path('posts/', views.posts_list, name='posts'),  # name must be 'posts'
 
+    # Home
+    path('', views.home, name='home'),
 
-    path('', ListView.as_view(), name='posts'),  
-    path('blog/posts/<int:pk>/', DetailView.as_view(), name='post-detail'),
-    path('post/new/', CreateView.as_view(), name='post-create'),
-    path('post/<int:pk>/update/', UpdateView.as_view(), name='post-update'),
-    path('post/<int:pk>/delete/', DeleteView.as_view(), name='post-delete'),
-
-
+    # Posts CRUD
+    path('posts/', views.PostListView.as_view(), name='posts'),
+    path('posts/<int:pk>/', views.PostDetailView.as_view(), name='post-detail'),
+    path('posts/new/', views.PostCreateView.as_view(), name='post-create'),
+    path('posts/<int:pk>/update/', views.PostUpdateView.as_view(), name='post-update'),
+    path('posts/<int:pk>/delete/', views.PostDeleteView.as_view(), name='post-delete'),
 ]
+
