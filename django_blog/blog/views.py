@@ -9,6 +9,9 @@ from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from .models import Post, Tag
 
+
+
+
 def Register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -28,7 +31,14 @@ def home(request):
     return render(request, 'blog/home.html')
 
 def posts_list(request):
-    return render(request, 'blog/posts.html')
+    query = request.GET.get('q')
+    if query:
+        posts = Post.objects.filter(title__icontains=query)  # <-- This is the check
+    else:
+        posts = Post.objects.all()
+
+    return render(request, 'blog/posts.html', {'posts': posts})
+
 
 
 
@@ -141,3 +151,4 @@ def posts_by_tag(request, tag_name):
     tag = get_object_or_404(Tag, name=tag_name)
     posts = tag.posts.all()
     return render(request, 'blog/posts_by_tag.html', {'tag': tag, 'posts': posts})
+
