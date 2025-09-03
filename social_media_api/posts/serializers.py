@@ -1,4 +1,4 @@
-from .models import Post, comment
+from .models import Post, Comment
 from rest_framework import serializers  
 
 
@@ -17,11 +17,10 @@ class CommentSerializer(serializers.ModelSerializer):
     post = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all())
     
     class Meta:
-        model = comment
+        model = Comment
         fields = ['id', 'post', 'user', 'content', 'created_at', 'updated_at']      
 
 
 
 
-        
-                
+
