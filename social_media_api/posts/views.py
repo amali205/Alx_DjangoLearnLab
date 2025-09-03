@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 from notifications.models import Notification
 
 
-generics.get_object_or_404(Post, pk=pk)"
+generics.get_object_or_404(Post, pk=pk)
 User = settings.AUTH_USER_MODEL
 
 class Post(models.Model):
