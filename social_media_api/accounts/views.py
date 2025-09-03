@@ -5,7 +5,6 @@ from rest_framework import viewsets , generics ,permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response    
 from rest_framework.authtoken.models import Token
-from rest_framework.generics import GenericAPIView
 from django.contrib.auth import authenticate , get_user_model
 # Create your views here.
 
@@ -18,7 +17,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 
-class RegisterView(generics.CreateAPIView):
+class RegisterView(generics.GenericAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = RegisterSerializer
 
