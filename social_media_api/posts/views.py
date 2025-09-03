@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets , filters
-from .models import Post, comment   
+from .models import Post, Comment   
 from .serializers import PostSerializer, CommentSerializer
 # Create your views here.
 
@@ -15,7 +15,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
 
 class CommentViewSet(viewsets.ModelViewSet):
-    queryset = comment.objects.all().order_by('-created_at')
+    queryset = Comment.objects.all().order_by('-created_at')
     serializer_class = CommentSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['user__username', 'content', 'post__id']
