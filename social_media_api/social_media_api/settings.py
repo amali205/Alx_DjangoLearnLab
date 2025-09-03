@@ -79,6 +79,7 @@ WSGI_APPLICATION = 'social_media_api.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+PORT = 8000
 
 DATABASES = {
     'default': {
