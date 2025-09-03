@@ -69,4 +69,43 @@ class UnlikePostView(generics.GenericAPIView):
             post.likes.filter(user=user).delete()
             return Response({'status': 'unliked'})
         else:
-            return Response({'status': 'not liked yet'}, status=400)        
+            return Response({'status': 'not liked yet'}, status=400)       
+
+
+
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status, permissions
+from django.shortcuts import get_object_or_404
+from .models import Post, Like
+
+
+class LikePostView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, post_id):
+        post = get_object_or_404(Post, id=post_id)
+
+        # Prevent duplicate likes
+        if Like.objects.filter(user=request.user, post=post).exists():
+            return Response({"error": "You have already liked this post."}, status=status.HTTP_400_BAD_REQUEST)
+
+        Like.objects.create(user=request.user, post=post)
+
+        # TODO: Generate notification here if you have notifications model
+        return Response({"message": f"You liked '{post.title}'"}, status=status.HTTP_201_CREATED)
+
+
+class UnlikePostView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, post_id):
+        post = get_object_or_404(Post, id=post_id)
+
+        like = Like.objects.filter(user=request.user, post=post).first()
+        if not like:
+            return Response({"error": "You have not liked this post."}, status=status.HTTP_400_BAD_REQUEST)
+
+        like.delete()
+        return Response({"message": f"You unliked '{post.title}'"}, status=status.HTTP_200_OK)
