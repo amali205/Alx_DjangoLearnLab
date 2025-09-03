@@ -6,8 +6,7 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from notifications.models import Notification
 
-from django.shortcuts import get_object_or_404
-post = generics.get_object_or_404(Post, pk=pk)
+
 
 User = settings.AUTH_USER_MODEL
 
